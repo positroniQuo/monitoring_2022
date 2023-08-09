@@ -33,3 +33,24 @@ plot(meuse[,3], meuse[,6])
 
 dev.off() # closes the plot
 
+# two more alternatives: assigning the column to a variable to call or attaching the dataset to call for the col. names directly
+
+attach(meuse)
+
+plot(cadmium, zinc) # such as in here
+
+# creating a scatterplot matrice to plot all variables
+
+pairs(meuse)
+
+# if i want to only use the env. variables for the plot (excluding firt two columns)
+
+pairs(meuse[,3:6])
+
+# or in a more uncofortable way
+
+pairs(~ cadmium + copper + lead + zinc, data=meuse) 
+
+# we can play around with colours, symbols and such whwn doing graphs
+
+pairs(~ cadmium + copper + lead + zinc, data=meuse, col="red", pch=17, cex=3) 
