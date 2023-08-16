@@ -137,37 +137,36 @@ plot(coastlines, add = TRUE)
 
 dev.off()
 
-### interpolate case data '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-# but these maps simply show the density based on the points, obviously in Europe there is 
-# a high country density = highest density of points
-# however the parameter abundance is much more informative, as it actually interpolates the number of cases
+# these maps simply show the density based on the points, but abundance may be a better indicator
 
-# 3rd we can do this using the function ~marks(), which assigns data to the points given in covid_planar
+# "marks()" attaches data to points
+
 attach(covid)
-marks(covid_planar) <- cases  # cases is the name of the relevant variable in the original array covid,
-# which we attach here, as covid_planar is simply a list of points
 
-# using the function ~Smooth it interpolates the point data given in covid_planar and assigns it the new name map_cases
+marks(covid_planar) <- cases
+
+# interpolating the point data into a new map with function "Smooth()" and plotting everything again
+
 map_cases <- Smooth(covid_planar)
+
+plot(map_cases, col = color) 
+
+points(covid_planar, pch = 19)
+
+plot(coastlines, add = T)
                     
-# to plot this map we use function ~plot
-plot(map_cases, col = c2) 
-points(covid_planar, pch = 19) # add points
-plot(coastlines, add = T) # adds coastlines    
-                    
-# next we download the package sf
-install.packages("sf") # used for spatial vector data
+# "sf" is used for spatial vector data analysis
+
+install.packages("sf")
+
 library(sf)
 
-# use function ~st_as_st() to convert the covid object to an sf object(extends data.frame-like objects with a simple feature list column) 
+# "st_as_st()" function converts the covid object to an sf object (simple feature)
+
 s_points <- st_as_sf(covid, coords = c("lon", "lat"))
 
-# create a new color palette
-c1 <- colorRampPalette(c("antiquewhite4", "aquamarine4", "darkslategray", "coral4", "firebrick3"))(100)
-plot(map_cases, col = c1) # plot the smoothed case map
-plot(s_points, cex = s_points$cases/10000, col = "purple4", lwd = 3, add = T) 
-# add circles around the countries with high case numbers, depending on their absolute value
+plot(map_cases, col = color) 
 
-# now we add on the coastlines to the smoothed map above
-coastlines <- readOGR("ne_10m_coastline.shp")
+plot(s_points, cex = s_points$cases/10000, col = "purple4", lwd = 3, add = T) 
+
 plot(coastlines, add = T)
