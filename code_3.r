@@ -16,51 +16,56 @@ plot(virus, death)
 
 corona <- data.frame(virus, death)
 
-# use function ~summary() to get basic statistical parameters about object
+# basic statistics of the data collected
+
 summary(corona)
 
-# use ggplot2 to create visual representations of the spread: use function ~ggplot to create graph
+# ggplot provides an alternative mean to make graphics with more in depth customization options
+# corona is the selected data set, of which we want to plot "virus" in the x axix and "death" in the y
+# "geom_ point()" adds a geometric paramether for the graphic to show the data, points in this case
+
 ggplot(corona, aes(x = virus, y = death)) + geom_point() 
-# data = corona (dataframe), aes = aesthetics: view of the graph, which variables?
-# use function ~geom_point() to add a geometrical reference to the data, in this case geometric point format 
-# this makes sense for this data, as points were measured in space
 
-# to change the look of the graph we add arguments in the geom_point function
-ggplot(corona, aes(x = virus, y = death)) + geom_point(size = 4,  col = "cornflowerblue", pch = 11) 
-# pch changes the size and color and symbol of the point
+# "geom_point()" also contains further aesthetics arguments such as in here
 
-# if instead we wanted to visualize lines (doesn't make sense with this data) use function ~geom_line
+ggplot(corona, aes(x = virus, y = death)) + geom_point(size = 2,  col = "red", pch = 13) 
+
+# there are other geometry options such as "geom_line()" and "geom_polygon()", also you can combine them together using simply +
+
 ggplot(corona, aes(x = virus, y = death)) + geom_line()
-
-# to create a polygon use function ~geom_polygon()
 ggplot(corona, aes(x = virus, y = death)) + geom_polygon()
-
-# you can use ggplot2 to connect multiple geometric shapes simply by adding more functions with + 
 ggplot(corona, aes(x = virus, y = death)) + geom_point + geom_line + geom_polygon()
 
-# 2nd now on to real data: case numbers by country from the beginning of the covid-19 pandemic (load data from external source)
+# as we will move on real data sets now a package called "spatstat" is called for spatial statistics analysis
 
-# recall the relevant packages using function ~library()
-library(ggplot2)
-library(spatstat) # spatial statistics
+library(spatstat) 
 
-# set a working directory using function ~setwd() for R to save all documents, files, objects etc in: 
-# in this case it is in the folder monitoring (see path below)
-setwd("C:/RStudio/monitoring")
+# setting a working directory is fundamental for saving the outputs of our work and
+# to call in for additional data that we will put there first
 
-# now we can import the datafolder (downloaded from virtuale into wd set above) 
-# using the function ~read.table() to import data directly from the wd
-covid <- read.table("covid_agg.csv", header = TRUE)  # to import the head of the doc as a head, 
-# which doesn't contain data in R aswell, set the header = TRUE
+setwd("D:\Uni\Progetti_R\Lezioni")
 
-# get a first look at the data we just imported
-covid # prints the whole dataset in the console
-head(covid) # prints the first few lines of the dataset in the console
-summary(covid) # calculates the basic statistic parameters for the dataset
+# now a dataset previously downloaded and put in the right folder will be accessed through "read.table()" function
+# "header = T" makes the first row of data's values the names of the columns, since the data has stored them this way
 
-# use function ~ggplot() to visualize the data from the set, we are using lon and lat as x and y 
+covid <- read.table("covid_agg.csv", header = TRUE)
+
+#checking for errors and such
+
+covid
+
+summary(covid)
+
+# "head()" returns only the first lines
+
+head(covid)
+
+# plotting the coordinates of the points in which data was collected
+
 ggplot(covid, aes(x = lon, y = lat)) + geom_point()
-# set the size of the points to cases so the symbol increases with case number at the different locations
+
+# we can make it so that the points grow in size depending on the number of cases corresponding to a set of coordinates
+
 ggplot(covid, aes(x = lon, y = lat, size = cases)) + geom_point()
 
 ### let's see the density of the coronavirus cases - Point pattern analysis
