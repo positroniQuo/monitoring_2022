@@ -112,19 +112,29 @@ points(covid_planar, pch = 1, col = 'blue', cex = 0.8)
 
 plot(coastlines, add = TRUE) 
 
-# if we want to download this map we can for example do it in png as well as pdf format by using function ~png("") or pdf("")
-png("cov_density_countries.png")
-c2 <- colorRampPalette(c('steelblue','slategray','seashell2','rosybrown','navajowhite4'))(100)
-plot(density_map, col = c2) 
+# save it as a png
+# firt you specify that you are doing it, then build the graph and finally save it with "dev.off()"
+
+png("cov_density.png")
+
+plot(density_map, col = color) 
+
 points(covid_planar, pch = 16, col = 'black', cex = 1)
+
 plot(coastlines, add = TRUE) 
-dev.off() # closes the window with the map
+
+dev.off()
+
+# same bu this time with pdf
 
 pdf("cov_density_countries.pdf")
-c3 <- colorRampPalette(c('mistyrose3','pink4','violetred','red4','indianred'))(100)  
-plot(density_map, col = c3) 
+
+plot(density_map, col = color) 
+
 points(covid_planar, pch = 4, col = 'black', cex = 1)
+
 plot(coastlines, add = TRUE) 
+
 dev.off()
 
 ### interpolate case data '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
