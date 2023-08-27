@@ -103,6 +103,7 @@ plot(dvi1988)
 
 # plot the difference between the dvi of both years
 # if DVI is lower, that implies the vegetation is not healthy or is cut
+
 difdvi <- dvi1988-dvi2011
-clu <- colorRampPalette(c("blue", "white", "red")) (100)
-plot(difdvi, col=clu) # red part in the plot signifies that the vegetation there is affected and is not healthy or soemthing
+
+plot(difdvi, col=cl)
