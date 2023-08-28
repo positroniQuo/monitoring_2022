@@ -1,6 +1,7 @@
 # code for environmental analysis
 
 # "install.packages()" installs r add ons, using "" to specify the requested package since "" must be used to refer to files outside the r environment
+
 install.packages("sp")
 
 # once downloaded, a package is called into the session and rendered usable through "library()" or "require()"
