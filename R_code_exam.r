@@ -21,11 +21,11 @@
 # Lastly, the shapefile containing the boundaries of Emilia Romagna has been downoladed from the geoportal of Emilia Romagna
 ## https://geoportale.regione.emilia-romagna.it
 
-# setting the working directory where all the data I need will be located and where I want my outputs to go
+# Setting the working directory where all the data I need will be located and where I want my outputs to go
 
 setwd("D:\\Uni\\Progetti_R\\esame_2")
 
-# calling for all the packages I need
+# Calling for all the packages I need
 
 library(ncdf4) # package for netcdf manipulation
 library(rgdal) # package for shp reading
