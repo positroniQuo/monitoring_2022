@@ -331,4 +331,9 @@ for(i in 1:3) {
 # The "patchwork" package makes it easy to buil a multiframe using simple operators such as + to
 # add side by side and / to add on top multiple graphs.
 
+jpeg("graphs.jpeg", units="cm", width=25, height=25, res=300)
+
 (graphs[[1]] + graphs[[2]]) / (graphs[[3]] + plot_spacer())
+
+dev.off()
+
