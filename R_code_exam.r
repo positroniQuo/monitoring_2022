@@ -45,14 +45,15 @@ library(patchwork) # simple graph multiframe
 # Reading the .netCDF of the soil water index (SWI).
 # Since it contains multiple other datasets we don't need I specify that i only need the "SWI_002" object,
 # containing the soil water index.
+# Brick creates a raster object
 
-swi <- brick("c_gls_SWI1km_202007021200_CEURO_SCATSAR_V1.0.1.nc", varname = "SWI_002") # brick creates a raster object
+swi <- brick("c_gls_SWI1km_202007021200_CEURO_SCATSAR_V1.0.1.nc", varname = "SWI_002") 
 
 # Let's see if it has been imported correctly
 
 plot(swi)
 
-# We only need the Emilia Romagna area, so we will use the shapefile extent of it to cut down the SWI image
+# We now need the Emilia Romagna area, so we will use the shapefile extent of it to cut down the SWI image
 # and then the shapefile itself to mask it so that they match their extention.
 # The middle steps will be shown in simple plots as the code progresses to check for errors
 
