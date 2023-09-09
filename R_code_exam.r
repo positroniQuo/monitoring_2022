@@ -308,6 +308,9 @@ cor.test(fires_data$Shape_Area, fires_data$fires_swi, alternative = "less")
    # assigns all the former to the ith element of the 'graphs' object
    # messages i as a sign of operation completion for the ith graph
 
+titles <- c("FORESTED AREA (0 to 1)", "MEAN T IN °C", "SWI %", 
+            'CORRELATION BETWEEN BURNT AREA AND FC', 'CORRELATION BETWEEN BURNT AREA AND MEAN T', 'CORRELATION BETWEEN BURNT AREA AND SWI')
+
 for(i in 1:3) {
   message(i)
   graphs[[i]] <- local({
