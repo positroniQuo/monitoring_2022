@@ -20,6 +20,13 @@
 ## https://ambiente.regione.emilia-romagna.it/it/parchi-natura2000/foreste/gli-incendi-boschivi/il-catasto-regionale-delle-aree-percorse-dal-fuoco/shape-incendi
 # Lastly, the shapefile containing the boundaries of Emilia Romagna has been downoladed from the geoportal of Emilia Romagna
 ## https://geoportale.regione.emilia-romagna.it
+# image used in exam presentation is a screenshot from
+##  https://servizimoka.regione.emilia-romagna.it/mokaApp/apps/CIBH5/index.html
+
+
+
+# project begins here #
+
 
 # Setting the working directory where all the data I need will be located and where I want my outputs to go
 
@@ -39,7 +46,6 @@ library(patchwork) # simple graph multiframe
 
 
 ### IMPORT AND DATA PREPARATION ###
-
 
 
 # Reading the .netCDF of the soil water index (SWI).
